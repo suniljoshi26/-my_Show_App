@@ -8,3 +8,7 @@ export const fatchShow = async (query: string) => {
   );
   return res.data.map((show) => show.show) || {};
 };
+export const fatchDetail = async (showId: number) => {
+  const res = await axios.get("https://api.tvmaze.com/shows/" + showId);
+  return res.data;
+};

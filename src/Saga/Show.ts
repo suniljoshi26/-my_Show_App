@@ -1,5 +1,5 @@
 import { Action } from "../Action";
-import { call, put } from "@redux-saga/core/effects";
+import { call, debounce, put } from "@redux-saga/core/effects";
 import { fatchShow } from "../api";
 import { showLoadingAction, SHOW_QUERY_ACTION } from "../Action/ShowAction";
 
@@ -16,5 +16,5 @@ export function* getShow(action: Action): Generator<any, any, any> {
 
 export function* rootSaga() {
   console.log("rootSaga");
-  yield takeLatest(SHOW_QUERY_ACTION, getShow);
+  yield debounce(400, SHOW_QUERY_ACTION, getShow);
 }
