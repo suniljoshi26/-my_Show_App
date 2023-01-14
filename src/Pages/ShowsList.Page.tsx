@@ -6,12 +6,7 @@ import ShowCard from "../Components/ShowCard";
 import { Show } from "../madels/ShowModels";
 import { showQuerySelector, showSelectors } from "../selectors/ShowSelector";
 import { State } from "../store";
-type showListpageProp = {
-  show: Show[];
-  query: string;
-  // showLoaded: (shows: Show[]) => void;
-  showQueryChange: (query: string) => void;
-};
+type showListpageProp = {} & RudexProp;
 const ShowListPage: FC<showListpageProp> = ({
   showQueryChange,
   show,
@@ -40,9 +35,6 @@ const mapStateToProps = (state: State) => {
   };
 };
 const mapDispatchToProps = { showQueryChange: queryAction };
-// const connector = ;
-// type RudexProp = ConnectedProps<typeof connector>;
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShowListPage as any);
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type RudexProp = ConnectedProps<typeof connector>;
+export default connector(ShowListPage);

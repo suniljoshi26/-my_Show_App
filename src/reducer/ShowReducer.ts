@@ -5,7 +5,7 @@ import { SHOW_LOADING_ACTION, SHOW_QUERY_ACTION } from "../Action/ShowAction";
 import { Show } from "../madels/ShowModels";
 
 export type State = {
-  shows: { [showId: number]: Show[] };
+  shows: { [showId: number]: Show };
   query: string;
 };
 export const initalState: State = {
