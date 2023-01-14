@@ -9,7 +9,9 @@ import { takeLatest } from "redux-saga/effects";
 export const sagaMiddleware = createSagaMiddleware();
 export function* getShow(action: Action): Generator<any, any, any> {
   console.log("getShow");
-
+  if (!action.payload) {
+    return;
+  }
   const show = yield call(fatchShow, action.payload);
   yield put(showLoadingAction(show));
 }
