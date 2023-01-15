@@ -11,10 +11,12 @@ import ShowsListPage from "../Pages/ShowsList.Page";
 
 export type State = {
   shows: { [showId: number]: Show };
+  query_show: { [query: string]: Show[] };
   query: string;
 };
 export const initalState: State = {
   shows: {},
+  query_show: {},
   query: "",
 };
 function showReducer(state = initalState, action: AnyAction): State {
@@ -26,7 +28,8 @@ function showReducer(state = initalState, action: AnyAction): State {
         const showSchema = new schema.Entity("shows");
 
         const normalizrData = normalize(shows, [showSchema]);
-        draft.shows = normalizrData.entities.shows || {};
+        draft.query_show[draft.query] = normalizrData.result;
+        draft.shows = { ...draft.shows, ...normalizrData.entities.shows };
       });
     case SHOW_QUERY_ACTION:
       return produce(state, (draft) => {
