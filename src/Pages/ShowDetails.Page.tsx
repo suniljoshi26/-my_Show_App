@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { connect, Connect, ConnectedProps } from "react-redux";
+import { showLoadAction } from "../Action/ShowAction";
 import CastCard from "../Components/CastCard";
 import GenrePill from "../Components/GenrePill";
 import withRouter, { WithRouterProps } from "../hocs/withRouter";
@@ -8,8 +9,11 @@ import { State } from "../store";
 type onProps = WithRouterProps;
 type ShowDetailPageProps = ReduxProps & onProps;
 
-const ShowDetailPage: FC<ShowDetailPageProps> = ({ params }) => {
+const ShowDetailPage: FC<ShowDetailPageProps> = ({ params, loadShow }) => {
   console.log(params);
+  useEffect(() => {
+    loadShow(+params.show_id);
+  }, [+params.show_id]);
   return (
     <div className="mt-2">
       <h2 className="text-4xl font-semibold tracking-wide">The Witcher</h2>
@@ -98,10 +102,12 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({ params }) => {
 };
 const mapStateToProps = (s: State, props: onProps) => {
   return {
-    show: showMapSelector(s)[+props.params.showId],
+    show: showMapSelector(s)[+props.params.show_id],
   };
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  loadShow: showLoadAction,
+};
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type ReduxProps = ConnectedProps<typeof connector>;
 
