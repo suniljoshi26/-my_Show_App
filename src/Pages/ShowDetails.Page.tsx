@@ -5,7 +5,10 @@ import CastCard from "../Components/CastCard";
 import GenrePill from "../Components/GenrePill";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import withRouter, { WithRouterProps } from "../hocs/withRouter";
-import { showMapSelector } from "../selectors/ShowSelector";
+import {
+  showLoadingSelector,
+  showMapSelector,
+} from "../selectors/ShowSelector";
 import { State } from "../store";
 type onProps = WithRouterProps;
 type ShowDetailPageProps = ReduxProps & onProps;
@@ -14,6 +17,7 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({
   params,
   loadShow,
   show,
+  loading,
 }) => {
   console.log(params);
   useEffect(() => {
@@ -25,6 +29,7 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({
   }
   return (
     <div className="mt-2">
+      {/* {loading && <LoadingSpinner />} */}
       <h2 className="text-4xl font-semibold tracking-wide">{show.name}</h2>
       <div className="flex space-x-3 my-2 bg-gray-300 p-2 rounded-sm">
         {show.genres.map((genres) => (
@@ -114,6 +119,7 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({
 const mapStateToProps = (s: State, props: onProps) => {
   return {
     show: showMapSelector(s)[+props.params.show_id],
+    loading: showLoadingSelector(s),
   };
 };
 const mapDispatchToProps = {
