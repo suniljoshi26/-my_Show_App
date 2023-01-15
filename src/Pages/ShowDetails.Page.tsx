@@ -27,13 +27,13 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({
     <div className="mt-2">
       <h2 className="text-4xl font-semibold tracking-wide">{show.name}</h2>
       <div className="flex space-x-3 my-2 bg-gray-300 p-2 rounded-sm">
-        {/* {show.genres.map((p) => (
-          <GenrePill name={p.name} />
-        ))} */}
+        {show.genres.map((genres) => (
+          <GenrePill name={genres} key={genres} />
+        ))}
 
-        <GenrePill name="Fiction" />
+        {/* <GenrePill name="Fiction" />
         <GenrePill name="Thriller" />
-        <GenrePill name="Violence" />
+        <GenrePill name="Violence" /> */}
       </div>
       <div className="mt-2 flex">
         <img

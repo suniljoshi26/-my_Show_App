@@ -22,7 +22,7 @@ const ShowListPage: FC<showListpageProp> = ({
       />
       <div className="flex flex-wrap justify-center">
         {show.map((s) => (
-          <ShowCard show={s} />
+          <ShowCard key={s.id} show={s} />
         ))}
       </div>
     </div>
