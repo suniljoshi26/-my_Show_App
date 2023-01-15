@@ -11,7 +11,7 @@ import ShowsListPage from "../Pages/ShowsList.Page";
 
 export type State = {
   shows: { [showId: number]: Show };
-  query_show: { [query: string]: Show[] };
+  query_show: { [query: string]: number[] };
   query: string;
 };
 export const initalState: State = {

@@ -11,6 +11,16 @@ export const showMapSelector = createSelector(
   showStateSelector,
   (showState) => showState.shows
 );
-export const showSelectors = createSelector(showMapSelector, (showMap) =>
-  Object.keys(showMap).map((showId) => showMap[+showId])
+
+const queryMapSelector = createSelector(
+  showStateSelector,
+  (state) => state.query_show
 );
+export const showSelectors = createSelector(
+  showMapSelector,
+  showQuerySelector,
+  queryMapSelector,
+  (showsMap, query, queryMap) =>
+    queryMap[query] ? queryMap[query].map((showId) => showsMap[showId]) : []
+);
+// Object.keys(showMap).map((showId) => showMap[+showId])
