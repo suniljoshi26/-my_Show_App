@@ -1,8 +1,13 @@
 import produce from "immer";
 import { schema, normalize } from "normalizr";
 import { AnyAction } from "redux";
-import { SHOW_LOADING_ACTION, SHOW_QUERY_ACTION } from "../Action/ShowAction";
+import {
+  SHOW_DETAIL_LODADED,
+  SHOW_LOADING_ACTION,
+  SHOW_QUERY_ACTION,
+} from "../Action/ShowAction";
 import { Show } from "../madels/ShowModels";
+import ShowsListPage from "../Pages/ShowsList.Page";
 
 export type State = {
   shows: { [showId: number]: Show };
@@ -26,6 +31,11 @@ function showReducer(state = initalState, action: AnyAction): State {
     case SHOW_QUERY_ACTION:
       return produce(state, (draft) => {
         draft.query = action.payload;
+      });
+    case SHOW_DETAIL_LODADED:
+      return produce(state, (draft) => {
+        const show = action.payload as Show;
+        draft.shows[show.id] = show;
       });
 
     default:
