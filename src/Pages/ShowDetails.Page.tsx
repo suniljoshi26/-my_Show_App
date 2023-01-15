@@ -1,11 +1,14 @@
 import { FC } from "react";
+import { connect, Connect, ConnectedProps } from "react-redux";
 import CastCard from "../Components/CastCard";
 import GenrePill from "../Components/GenrePill";
 import withRouter, { WithRouterProps } from "../hocs/withRouter";
+import { showMapSelector } from "../selectors/ShowSelector";
+import { State } from "../store";
+type onProps = WithRouterProps;
+type ShowDetailPageProps = ReduxProps & onProps;
 
-type ShowDetailPageProps = WithRouterProps;
-
-const ShowDetailPage: FC<WithRouterProps> = ({ params }) => {
+const ShowDetailPage: FC<ShowDetailPageProps> = ({ params }) => {
   console.log(params);
   return (
     <div className="mt-2">
@@ -93,5 +96,13 @@ const ShowDetailPage: FC<WithRouterProps> = ({ params }) => {
     </div>
   );
 };
+const mapStateToProps = (s: State, props: onProps) => {
+  return {
+    show: showMapSelector(s)[+props.params.showId],
+  };
+};
+const mapDispatchToProps = {};
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type ReduxProps = ConnectedProps<typeof connector>;
 
-export default withRouter(ShowDetailPage);
+export default withRouter(connector(ShowDetailPage));
