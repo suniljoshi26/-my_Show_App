@@ -15,3 +15,16 @@ export type Show = {
   };
   summary: string;
 };
+
+export type Cast = {
+  id: number;
+  image: {
+    medium: string;
+    original: string;
+  };
+  name: string;
+};
+export type showCast = {
+  show: Show[];
+  cast: Cast[];
+};

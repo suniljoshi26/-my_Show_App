@@ -12,9 +12,13 @@ export const showMapSelector = createSelector(
   (showState) => showState.shows
 );
 
-const queryMapSelector = createSelector(
+export const queryMapSelector = createSelector(
   showStateSelector,
   (state) => state.query_show
+);
+export const showLoadingSelector = createSelector(
+  showStateSelector,
+  (state) => state.loading
 );
 export const showSelectors = createSelector(
   showMapSelector,
