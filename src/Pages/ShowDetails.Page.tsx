@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 import { connect, Connect, ConnectedProps } from "react-redux";
+import { castloadAction } from "../Action/CastAction";
 import { showLoadAction } from "../Action/ShowAction";
 import { fatchCast } from "../api";
 import CastCard from "../Components/CastCard";
@@ -19,11 +20,12 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({
   loadShow,
   show,
   loading,
+  castLoad,
 }) => {
   console.log(params);
   useEffect(() => {
     loadShow(+params.show_id);
-    fatchCast(+params.show_id);
+    castLoad(+params.show_id);
   }, [+params.show_id]);
 
   if (!show) {
@@ -126,6 +128,7 @@ const mapStateToProps = (s: State, props: onProps) => {
 };
 const mapDispatchToProps = {
   loadShow: showLoadAction,
+  castLoad: castloadAction,
 };
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type ReduxProps = ConnectedProps<typeof connector>;

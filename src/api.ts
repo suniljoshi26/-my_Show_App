@@ -35,5 +35,5 @@ export const fatchCast = async (showId: number) => {
   const res = await axios.get<{ person: Cast }[]>(
     "https://api.tvmaze.com/shows/" + showId + "/cast"
   );
-  return console.log(res.data.map((i) => i.person));
+  return res.data.map((i) => i.person);
 };
