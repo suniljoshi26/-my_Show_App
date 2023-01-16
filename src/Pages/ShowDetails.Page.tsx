@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { connect, Connect, ConnectedProps } from "react-redux";
 import { showLoadAction } from "../Action/ShowAction";
+import { fatchCast } from "../api";
 import CastCard from "../Components/CastCard";
 import GenrePill from "../Components/GenrePill";
 import LoadingSpinner from "../Components/LoadingSpinner";
@@ -22,6 +23,7 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({
   console.log(params);
   useEffect(() => {
     loadShow(+params.show_id);
+    fatchCast(+params.show_id);
   }, [+params.show_id]);
 
   if (!show) {
@@ -29,7 +31,7 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({
   }
   return (
     <div className="mt-2">
-      {/* {loading && <LoadingSpinner />} */}
+      {loading && <LoadingSpinner />}
       <h2 className="text-4xl font-semibold tracking-wide">{show.name}</h2>
       <div className="flex space-x-3 my-2 bg-gray-300 p-2 rounded-sm">
         {show.genres.map((genres) => (

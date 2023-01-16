@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { queryAction } from "../Action/ShowAction";
+import { fatchShow2 } from "../api";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import SearchBar from "../Components/SearchBar";
 import ShowCard from "../Components/ShowCard";
@@ -19,7 +20,7 @@ const ShowListPage: FC<showListpageProp> = ({
   loading,
 }) => {
   console.log("show", show);
-  console.log("query", query);
+  console.log("query");
   return (
     <div className="mt-2">
       <div className="flex  justify-center items-center">
