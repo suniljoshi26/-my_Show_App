@@ -4,7 +4,7 @@ import { AnyAction } from "redux";
 import { CAST_LOADING_ACTIN } from "../Action/CastAction";
 import { Cast } from "../madels/ShowModels";
 
-export type State = { cast: { [personId: number]: Cast[] } };
+export type State = { cast: { [personId: number]: Cast } };
 export const initalState: State = { cast: {} };
 function CastReducer(state = initalState, action: AnyAction): State {
   switch (action.type) {
