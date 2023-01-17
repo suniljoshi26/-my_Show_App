@@ -12,6 +12,13 @@ export const showMapSelector = createSelector(
   (showState) => showState.shows
 );
 
+// export const showCastSelector = createSelector(showMapSelector, (showState) => {
+//   console.log("showMapSelector", showState);
+
+//   const data = Object.keys(showState).map((i) => showState[+i]);
+//   console.log("dataSele", data);
+//   return data;
+// });
 export const queryMapSelector = createSelector(
   showStateSelector,
   (state) => state.query_show

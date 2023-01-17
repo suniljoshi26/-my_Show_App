@@ -1,6 +1,6 @@
 import { Action } from "../Action";
 import { call, debounce, put } from "@redux-saga/core/effects";
-import { fatchCast, fatchDetail, fatchShow } from "../api";
+import { fatchCast, fatchDetail, fatchShow2 } from "../api";
 import {
   showDetailAction,
   showLoadingAction,
@@ -18,7 +18,7 @@ export function* getShow(action: Action): Generator<any, any, any> {
   if (!action.payload) {
     return;
   }
-  const show = yield call(fatchShow, action.payload);
+  const show = yield call(fatchShow2, action.payload);
   yield put(showLoadingAction(show));
 }
 export function* getShowDetail(action: Action): Generator<any, any, any> {

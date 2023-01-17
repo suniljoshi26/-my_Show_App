@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 import { connect, Connect, ConnectedProps } from "react-redux";
+import { Link } from "react-router-dom";
 import { castloadAction } from "../Action/CastAction";
 import { showLoadAction } from "../Action/ShowAction";
 import { fatchCast } from "../api";
@@ -36,6 +37,9 @@ const ShowDetailPage: FC<ShowDetailPageProps> = ({
   }
   return (
     <div className="mt-2">
+      <Link to="/" className="px-3 text-white py-2 bg-gray-500">
+        Back
+      </Link>
       {loading && <LoadingSpinner />}
       <h2 className="text-4xl font-semibold tracking-wide">{show.name}</h2>
       <div className="flex space-x-3 my-2 bg-gray-300 p-2 rounded-sm">

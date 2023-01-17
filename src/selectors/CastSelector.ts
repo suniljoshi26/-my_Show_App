@@ -10,3 +10,11 @@ export const castMapSelector = createSelector(
 export const castSelector = createSelector(castMapSelector, (state) =>
   Object.keys(state).map((castId) => state[+castId])
 );
+
+export const castsMapSelector = createSelector(
+  castStateSelector,
+  (castState) => {
+    console.log("castState", castState.castShow);
+    return castState.castShow;
+  }
+);

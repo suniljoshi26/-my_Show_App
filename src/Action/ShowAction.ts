@@ -1,8 +1,10 @@
 import { ActionCreater } from ".";
-import { Show } from "../madels/ShowModels";
+import { Show, ShowCast } from "../madels/ShowModels";
 
 export const SHOW_LOADING_ACTION = " SHOW_LOADING_ACTION";
-export const showLoadingAction: ActionCreater = (shows: Show[]) => ({
+export const showLoadingAction: ActionCreater<ShowCast[]> = (
+  shows: ShowCast[]
+) => ({
   type: SHOW_LOADING_ACTION,
   payload: shows,
 });

@@ -6,6 +6,7 @@ import LoadingSpinner from "../Components/LoadingSpinner";
 import SearchBar from "../Components/SearchBar";
 import ShowCard from "../Components/ShowCard";
 import { Show } from "../madels/ShowModels";
+import { castMapSelector, castsMapSelector } from "../selectors/CastSelector";
 import {
   showLoadingSelector,
   showQuerySelector,
@@ -18,9 +19,10 @@ const ShowListPage: FC<showListpageProp> = ({
   show,
   query,
   loading,
+  cast,
 }) => {
-  console.log("show", show);
-  console.log("query");
+  console.log("show", cast);
+
   return (
     <div className="mt-2">
       <div className="flex  justify-center items-center">
@@ -34,7 +36,7 @@ const ShowListPage: FC<showListpageProp> = ({
       </div>
       <div className="flex flex-wrap justify-center">
         {show.map((s) => (
-          <ShowCard key={s.id} show={s} />
+          <ShowCard key={s.id} show={s} cast={cast[s.id]} />
         ))}
       </div>
     </div>
@@ -45,6 +47,7 @@ const mapStateToProps = (state: State) => {
     query: showQuerySelector(state),
     show: showSelectors(state),
     loading: showLoadingSelector(state),
+    cast: castsMapSelector(state),
   };
 };
 const mapDispatchToProps = { showQueryChange: queryAction };

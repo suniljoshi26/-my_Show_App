@@ -28,13 +28,20 @@ function showReducer(state = initalState, action: AnyAction): State {
     case SHOW_LOADING_ACTION:
       console.log("jg");
       return produce(state, (draft) => {
-        const shows = action.payload;
+        const shows = action.payload.map((item: any) => item.show) as Show;
         const showSchema = new schema.Entity("shows");
         draft.loading = false;
 
         const normalizrData = normalize(shows, [showSchema]);
         draft.query_show[draft.query] = normalizrData.result;
         draft.shows = { ...draft.shows, ...normalizrData.entities.shows };
+
+        // const shows = action.payload as Show[];
+        // console.log("show", shows);
+        // const data = shows.reduce((pre: any, crt: any) => {
+        //   return { ...pre, [crt.show.id]: crt };
+        // }, {});
+        // draft.shows = data;
       });
     case SHOW_QUERY_ACTION:
       return produce(state, (draft) => {
