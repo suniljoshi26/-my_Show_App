@@ -39,21 +39,24 @@ export const fatchShow2 = async (query: string) => {
   });
   const data = [];
   for (let i = 0; i < shows.length; i++) {
-    data.push(getCastForShow(shows[i]));
+    data.push(getCastShow(shows[i]));
   }
 
   return Promise.all(data);
 };
+
+export const getCastShow = async (show: Show) => {
+  console.log(show.id);
+  const response = await axios.get(BASE_URL + "/shows/" + show.id + "/cast");
+  const cast = response.data.map((item: any) => item.person);
+  return { show, cast: { id: show.id, person: cast } };
+};
+
 export const fatchDetail = async (showId: number) => {
   const res = await axios.get("https://api.tvmaze.com/shows/" + showId);
   return res.data;
 };
 
-export const getCastForShow = async (show: Show) => {
-  const response = await axios.get(BASE_URL + "/shows/" + show.id + "/cast");
-  const cast = response.data.map((item: any) => item.person);
-  return { show, cast: { id: show.id, person: cast } };
-};
 export const fatchCast = async (showId: number) => {
   const res = await axios.get<{ person: Cast }[]>(
     "https://api.tvmaze.com/shows/" + showId + "/cast"

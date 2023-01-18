@@ -35,6 +35,11 @@ const ShowListPage: FC<showListpageProp> = ({
         <div>{loading && <LoadingSpinner className="text-2xl" />}</div>
       </div>
       <div className="flex flex-wrap justify-center">
+        {show.length === 0 && (
+          <div className="mt-40 text-3xl font-bold">
+            🍿Search For Your Favorite MOVIE/SERIES🎬
+          </div>
+        )}
         {show.map((s) => (
           <ShowCard key={s.id} show={s} cast={cast[s.id]} />
         ))}
