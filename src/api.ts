@@ -31,9 +31,7 @@ import { Cast, Show } from "./madels/ShowModels";
 const BASE_URL = "https://api.tvmaze.com";
 
 export const fatchShow2 = async (query: string) => {
-  const response = await axios.get(
-    "https://api.tvmaze.com/search/shows?q=" + query
-  );
+  const response = await axios.get(BASE_URL + "/search/shows?q=" + query);
   const shows: Show[] = response.data.map((i: any) => {
     return i.show;
   });

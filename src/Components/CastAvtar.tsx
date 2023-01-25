@@ -22,15 +22,14 @@ const CastAvtar: FC<CastAvtarProps> = ({ cast, className }) => {
         return (
           <div
             key={p.id}
-            className="flex items-center justify-between md:px-4 md:py-1 border-b-2 border-black "
+            className="flex items-center justify-between md:px-4 md:py-1 border-b-21 border-black "
           >
             <Avatar
-              alt="Remy Sharp"
+              alt="xyz"
               src={p.image?.medium}
-              sx={{ width: 24, height: 24 }}
+              sx={{ width: 28, height: 28 }}
             />
             <p className="text-base font-semibold"> {p.name} </p>
-            <Divider />
           </div>
         );
       })}
