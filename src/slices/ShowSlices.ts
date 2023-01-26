@@ -23,6 +23,7 @@ export const showSlice = createSlice({
   initialState,
   reducers: {
     showLoading,
+    showQueryChange,
   },
 });
 
@@ -37,4 +38,9 @@ function showLoading(state: State, action: PayloadAction<Show[]>) {
   const normalizrData = normalize(shows, [showSchema]);
   state.query_show[state.query] = normalizrData.result;
   state.shows = { ...state.shows, ...normalizrData.entities.shows };
+}
+
+function showQueryChange(state: State, action: PayloadAction<string>) {
+  state.query = action.payload;
+  state.loading = true;
 }
