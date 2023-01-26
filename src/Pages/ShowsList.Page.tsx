@@ -12,6 +12,7 @@ import {
   showQuerySelector,
   showSelectors,
 } from "../selectors/ShowSelector";
+import { showQueryChangeAction } from "../slices/ShowSlices";
 import { State } from "../store";
 type showListpageProp = {} & RudexProp;
 const ShowListPage: FC<showListpageProp> = ({
@@ -41,7 +42,11 @@ const ShowListPage: FC<showListpageProp> = ({
           </div>
         )}
         {show.map((s) => (
-          <ShowCard key={s.id} show={s} cast={cast[s.id]} />
+          <ShowCard
+            key={s.id}
+            show={s}
+            // cast={cast[s.id]}
+          />
         ))}
       </div>
     </div>
@@ -55,7 +60,7 @@ const mapStateToProps = (state: State) => {
     cast: castsMapSelector(state),
   };
 };
-const mapDispatchToProps = { showQueryChange: queryAction };
+const mapDispatchToProps = { showQueryChange: showQueryChangeAction };
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type RudexProp = ConnectedProps<typeof connector>;
 export default connector(ShowListPage);

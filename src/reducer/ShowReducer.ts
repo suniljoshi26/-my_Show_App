@@ -43,11 +43,11 @@ function showReducer(state = initalState, action: AnyAction): State {
         // }, {});
         // draft.shows = data;
       });
-    case SHOW_QUERY_ACTION:
-      return produce(state, (draft) => {
-        draft.query = action.payload;
-        draft.loading = true;
-      });
+    // case SHOW_QUERY_ACTION:
+    //   return produce(state, (draft) => {
+    //     draft.query = action.payload;
+    //     draft.loading = true;
+    //   });
     case SHOW_DETAIL_LODADED:
       return produce(state, (draft) => {
         const show = action.payload as Show;

@@ -3,7 +3,6 @@ import { call, debounce, put } from "@redux-saga/core/effects";
 import { fatchCast, fatchDetail, fatchShow2 } from "../api";
 import {
   showDetailAction,
-  showLoadingAction,
   SHOW_LOAD_ACTION,
   SHOW_QUERY_ACTION,
 } from "../Action/ShowAction";
@@ -11,7 +10,7 @@ import {
 import createSagaMiddleware from "@redux-saga/core";
 import { takeEvery, takeLatest } from "redux-saga/effects";
 import { castLoadingAction, CAST_LOAD_ACTION } from "../Action/CastAction";
-import { showQueryChangeAction } from "../slices/ShowSlices";
+import { showLoadingAction, showQueryChangeAction } from "../slices/ShowSlices";
 
 export const sagaMiddleware = createSagaMiddleware();
 export function* getShow(action: Action): Generator<any, any, any> {

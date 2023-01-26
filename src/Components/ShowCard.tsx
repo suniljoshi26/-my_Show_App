@@ -5,10 +5,10 @@ import { Cast, Cast1, Person, Show } from "../madels/ShowModels";
 import CastAvtar from "./CastAvtar";
 type showProps = {
   show: Show;
-  cast: Cast1;
+  // cast: Cast1;
 };
-const ShowCard: FC<showProps> = ({ show, cast }) => {
-  console.log("cast", cast);
+const ShowCard: FC<showProps> = ({ show }) => {
+  console.log("cast");
   const [avtarShow, setAvtarShow] = useState(false);
 
   return (
@@ -34,7 +34,7 @@ const ShowCard: FC<showProps> = ({ show, cast }) => {
         </Link>
         <div className="flex flex-col items-center gap-4 ">
           <h3 className="text-2xl font-semibold">Cast</h3>
-          <div className="cursor-pointer">
+          {/* <div className="cursor-pointer">
             <AvatarGroup
               max={4}
               total={cast.person?.length}
@@ -44,15 +44,15 @@ const ShowCard: FC<showProps> = ({ show, cast }) => {
                 return <Avatar key={p.id} alt="" src={p.image?.medium} />;
               })}
             </AvatarGroup>
-          </div>
-          {avtarShow && (
+          </div> */}
+          {/* {avtarShow && (
             <CastAvtar
               cast={cast?.person}
               //   className={` ${
               //     avtarShow ? "bottom-20" : "bottom-[-100%]"
               //   } + " absolute md:left-52 left-44 bottom-20 duration-300 "`}
             />
-          )}
+          )} */}
         </div>
         <>{/* <CastAvtar cast={cast} /> */}</>
       </div>
