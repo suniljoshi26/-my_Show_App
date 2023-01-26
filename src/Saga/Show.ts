@@ -11,6 +11,7 @@ import {
 import createSagaMiddleware from "@redux-saga/core";
 import { takeEvery, takeLatest } from "redux-saga/effects";
 import { castLoadingAction, CAST_LOAD_ACTION } from "../Action/CastAction";
+import { showQueryChangeAction } from "../slices/ShowSlices";
 
 export const sagaMiddleware = createSagaMiddleware();
 export function* getShow(action: Action): Generator<any, any, any> {
@@ -31,7 +32,7 @@ export function* getCast(action: Action): Generator<any, any, any> {
 }
 export function* rootSaga() {
   console.log("rootSaga");
-  yield debounce(400, SHOW_QUERY_ACTION, getShow);
+  yield debounce(400, showQueryChangeAction, getShow);
   yield takeEvery(SHOW_LOAD_ACTION, getShowDetail);
   yield takeEvery(CAST_LOAD_ACTION, getCast);
 }
