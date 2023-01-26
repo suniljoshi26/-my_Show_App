@@ -44,3 +44,9 @@ function showQueryChange(state: State, action: PayloadAction<string>) {
   state.query = action.payload;
   state.loading = true;
 }
+const { actions, reducer: showReducer } = showSlice;
+export const {
+  showLoading: showLoadingAction,
+  showQueryChange: showQueryChangeAction,
+} = actions;
+export default showReducer;
