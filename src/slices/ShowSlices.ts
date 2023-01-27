@@ -1,23 +1,27 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createEntityAdapter,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { normalize, schema } from "normalizr";
 import { Show } from "../madels/ShowModels";
+const showsAdapter = createEntityAdapter();
+// type State = {
+//   // shows: { [showId: number]: Show };
+//   query_show: { [query: string]: number[] };
+//   query: string;
+//   show_loading: { [showId: number]: boolean };
+//   loading: boolean;
+// };
 
-type State = {
-  shows: { [showId: number]: Show };
-  query_show: { [query: string]: number[] };
-  query: string;
-  show_loading: { [showId: number]: boolean };
-  loading: boolean;
-};
-
-const initialState: State = {
-  shows: {},
+const initialState = showsAdapter.getInitialState({
+  // shows: {},
   query_show: {},
   query: "",
   loading: false,
   show_loading: {},
-};
-
+});
+export type State = typeof initialState;
 export const showSlice = createSlice({
   name: "shows",
   initialState,
