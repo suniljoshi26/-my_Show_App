@@ -24,7 +24,22 @@ export type Cast = {
   };
   name: string;
 };
-export type showCast = {
-  show: Show[];
-  cast: Cast[];
+// export type showCast = {
+//   show: Show[];
+//   cast: Cast[];
+// };
+export type Person = {
+  id: number;
+  name: string;
+  image: {
+    medium: string;
+    original: string;
+  };
+};
+
+export type Cast1 = { person: Person[]; id: number };
+
+export type ShowCast = {
+  id: number;
+  person: Person[];
 };

@@ -1,8 +1,10 @@
 import { ActionCreater } from ".";
-import { Show } from "../madels/ShowModels";
+import { Show, ShowCast } from "../madels/ShowModels";
 
 export const SHOW_LOADING_ACTION = " SHOW_LOADING_ACTION";
-export const showLoadingAction: ActionCreater = (shows: Show[]) => ({
+export const showLoadingAction: ActionCreater<ShowCast[]> = (
+  shows: ShowCast[]
+) => ({
   type: SHOW_LOADING_ACTION,
   payload: shows,
 });
@@ -13,11 +15,11 @@ export const queryAction: ActionCreater<string> = (query: string) => ({
   payload: query,
 });
 
-export const SHOW_DETAIL_LODADED = " SHOW_DETAIL_LODADED";
-export const showDetailAction: ActionCreater<Show> = (show: Show) => ({
-  type: SHOW_DETAIL_LODADED,
-  payload: show,
-});
+// export const SHOW_DETAIL_LODADED = " SHOW_DETAIL_LODADED";
+// export const showDetailAction: ActionCreater<Show> = (show: Show) => ({
+//   type: SHOW_DETAIL_LODADED,
+//   payload: show,
+// });
 
 export const SHOW_LOAD_ACTION = " SHOW_LOAD_ACTION";
 export const showLoadAction: ActionCreater<number> = (showId: number) => ({

@@ -9,9 +9,16 @@ export const showQuerySelector = createSelector(
 );
 export const showMapSelector = createSelector(
   showStateSelector,
-  (showState) => showState.shows
+  (showState) => showState.entities
 );
 
+// export const showCastSelector = createSelector(showMapSelector, (showState) => {
+//   console.log("showMapSelector", showState);
+
+//   const data = Object.keys(showState).map((i) => showState[+i]);
+//   console.log("dataSele", data);
+//   return data;
+// });
 export const queryMapSelector = createSelector(
   showStateSelector,
   (state) => state.query_show
@@ -25,6 +32,6 @@ export const showSelectors = createSelector(
   showQuerySelector,
   queryMapSelector,
   (showsMap, query, queryMap) =>
-    queryMap[query] ? queryMap[query].map((showId) => showsMap[showId]) : []
+    queryMap[query]?.map((showId) => showsMap[showId]!)
 );
 // Object.keys(showMap).map((showId) => showMap[+showId])
