@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import { normalize, schema } from "normalizr";
 import { Show } from "../madels/ShowModels";
-const showsAdapter = createEntityAdapter();
+const showsAdapter = createEntityAdapter<Show>();
 // type State = {
 //   // shows: { [showId: number]: Show };
 //   query_show: { [query: string]: number[] };
@@ -16,10 +16,10 @@ const showsAdapter = createEntityAdapter();
 
 const initialState = showsAdapter.getInitialState({
   // shows: {},
-  query_show: {},
+  query_show: {} as { [query: string]: number[] },
   query: "",
+  show_loading: {} as { [query: string]: boolean },
   loading: false,
-  show_loading: {},
 });
 export type State = typeof initialState;
 export const showSlice = createSlice({
@@ -28,20 +28,24 @@ export const showSlice = createSlice({
   reducers: {
     showLoading,
     showQueryChange,
+    showDetailLoaded: showsAdapter.addOne,
   },
 });
 
 function showLoading(state: State, action: PayloadAction<Show[]>) {
-  const shows = action.payload.map((item: any) => item.show) as Show[];
-  const showSchema = new schema.Entity("shows");
+  const shows = action.payload as Show[];
+  // const showSchema = new schema.Entity("shows");
+  console.log("shows", shows);
+
   if (!shows || shows.length === 0) {
     return;
   }
   state.loading = false;
 
-  const normalizrData = normalize(shows, [showSchema]);
-  state.query_show[state.query] = normalizrData.result;
-  state.shows = { ...state.shows, ...normalizrData.entities.shows };
+  // const normalizrData = normalize(shows, [showSchema]);
+  state.query_show[state.query] = shows.map((s) => s.id);
+  // state.shows = { ...state.shows, ...normalizrData.entities.shows };
+  showsAdapter.addMany(state, action);
 }
 
 function showQueryChange(state: State, action: PayloadAction<string>) {
@@ -52,5 +56,6 @@ const { actions, reducer: showReducer } = showSlice;
 export const {
   showLoading: showLoadingAction,
   showQueryChange: showQueryChangeAction,
+  showDetailLoaded: showDetailAction,
 } = actions;
 export default showReducer;

@@ -12,7 +12,7 @@ import {
   showQuerySelector,
   showSelectors,
 } from "../selectors/ShowSelector";
-import { showQueryChangeAction } from "../slices/ShowSlices";
+import { showQueryChangeAction, showLoadingAction } from "../slices/ShowSlices";
 import { State } from "../store";
 type showListpageProp = {} & RudexProp;
 const ShowListPage: FC<showListpageProp> = ({
@@ -22,8 +22,8 @@ const ShowListPage: FC<showListpageProp> = ({
   loading,
   cast,
 }) => {
-  console.log("show", cast);
-
+  console.log("show", show);
+  // let shows = show!;
   return (
     <div className="mt-2">
       <div className="flex  justify-center items-center">
@@ -36,18 +36,19 @@ const ShowListPage: FC<showListpageProp> = ({
         <div>{loading && <LoadingSpinner className="text-2xl" />}</div>
       </div>
       <div className="flex flex-wrap justify-center">
-        {show.length === 0 && (
+        {show && show.length === 0 && (
           <div className="mt-40 text-3xl font-bold">
             🍿Search For Your Favorite MOVIE/SERIES🎬
           </div>
         )}
-        {show.map((s) => (
-          <ShowCard
-            key={s.id}
-            show={s}
-            // cast={cast[s.id]}
-          />
-        ))}
+        {show &&
+          show.map((s) => (
+            <ShowCard
+              key={s.id}
+              show={s}
+              // cast={cast[s.id]}
+            />
+          ))}
       </div>
     </div>
   );

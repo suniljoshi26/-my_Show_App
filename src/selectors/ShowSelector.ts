@@ -9,7 +9,7 @@ export const showQuerySelector = createSelector(
 );
 export const showMapSelector = createSelector(
   showStateSelector,
-  (showState) => showState.shows
+  (showState) => showState.entities
 );
 
 // export const showCastSelector = createSelector(showMapSelector, (showState) => {
@@ -32,6 +32,6 @@ export const showSelectors = createSelector(
   showQuerySelector,
   queryMapSelector,
   (showsMap, query, queryMap) =>
-    queryMap[query] ? queryMap[query].map((showId) => showsMap[showId]) : []
+    queryMap[query]?.map((showId) => showsMap[showId]!)
 );
 // Object.keys(showMap).map((showId) => showMap[+showId])

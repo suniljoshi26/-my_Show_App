@@ -15,11 +15,11 @@ export const queryAction: ActionCreater<string> = (query: string) => ({
   payload: query,
 });
 
-export const SHOW_DETAIL_LODADED = " SHOW_DETAIL_LODADED";
-export const showDetailAction: ActionCreater<Show> = (show: Show) => ({
-  type: SHOW_DETAIL_LODADED,
-  payload: show,
-});
+// export const SHOW_DETAIL_LODADED = " SHOW_DETAIL_LODADED";
+// export const showDetailAction: ActionCreater<Show> = (show: Show) => ({
+//   type: SHOW_DETAIL_LODADED,
+//   payload: show,
+// });
 
 export const SHOW_LOAD_ACTION = " SHOW_LOAD_ACTION";
 export const showLoadAction: ActionCreater<number> = (showId: number) => ({
